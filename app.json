@@ -1,0 +1,7 @@
+{
+    "name": "DemoFetchReact",
+    "displayName": "Zach Lewis Demo App",
+    "expo": {
+        "sdkVersion": "25.0.0"
+    }
+}
