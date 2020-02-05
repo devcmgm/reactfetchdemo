@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Async from 'react-async';
+import { Updates } from 'expo';
+import MGM311 from "./MGM311.js"
+
 
 class App extends Component {
   state = {
     apiInfo: null,
     externalData: null,
+
   };
 
   componentDidMount() {
@@ -49,7 +53,8 @@ class App extends Component {
 
      return (
       <View style={styles.container}>
-        <Text>know Works Loaded {items} </Text>
+        <Text>know Works Loaded  </Text>
+        <MGM311 myitems={this.state.externalData} />
       </View>
        );
      }

@@ -18,6 +18,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
+      "updates.enabled": false,
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
