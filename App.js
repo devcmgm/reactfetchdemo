@@ -1,43 +1,77 @@
 import React, { Component } from 'react';
-import { FlatList , Table, TableWrapper, Row, Rows, Col, Cols, Cell} from 'react-native';
-import { StyleSheet, Text, View,  } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Async from 'react-async';
 import { Updates } from 'expo';
+import MGM311 from "./MGM311.js"
 
 
-class MGM311 extends Component {
+class App extends Component {
+  state = {
+    apiInfo: null,
+    externalData: null,
 
-   constructor(props) {
-    super(props);
-    this.state = {
-      tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
-      tableData: [
-        ['1', '2', '3', '4'],
-        ['a', 'b', 'c', 'd'],
-        ['1', '2', '3', '456\n789'],
-        ['a', 'b', 'c', 'd']
-      ]
-    }
+  };
+
+  componentDidMount() {
+    this.getText()
+      ;
   }
-    
+
+  async getText() {
+    const url = 'https://data.montgomeryal.gov/resource/7wcg-q8pp.json';
+    console.log(url);
+
+    fetch(url, {
+    }).then( response => response.json())
+    .then(responseText => {
+      //console.log(responseText)
+      this.setState({ externalData: responseText } )
+      })
+    .catch((error) => {
+     return Promise.reject()
+    });
+
+  }
+  
   render() {
 
-    const state = this.state;
+    if (this.state.externalData === null) {
+      // Render loading state ...
+    return (
+      <View style={styles.container}>
+        <Text>try xxxxxxxx009 - Changed to Class working on your app!</Text>      
+      </View>
+    );
+    } else {
 
-    return( 
-      <View>
-       <Table>
-          <Row data={this.state.tableHead} />
-          <Rows data={this.state.tableData} />
-        </Table>   
-       </View>
-     );
-
+      const items = this.state.externalData.map(function(item, index){
+        return <li> {item.request_type} </li>;
+      });
      
+     console.log("FOO" + items);
+
+
+     return (
+      <View style={styles.container}>
+        <Text>know Works Loaded  </Text>
+        <Image style={{
+    width: 400,
+    height: 400,
+    resizeMode: 'contain',
+  }}  source={require('./mgmopendata.png')}></Image>
+        <MGM311 myitems={this.state.externalData} />
+      </View>
+       );
+     }
   }
-
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
-
-
-export default MGM311;
+export default App;
