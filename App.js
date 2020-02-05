@@ -54,7 +54,11 @@ class App extends Component {
      return (
       <View style={styles.container}>
         <Text>know Works Loaded  </Text>
-        <Image source={require('./mgmopendata.png')}></Image>
+        <Image style={{
+    width: 400,
+    height: 400,
+    resizeMode: 'contain',
+  }}  source={require('./mgmopendata.png')}></Image>
         <MGM311 myitems={this.state.externalData} />
       </View>
        );
