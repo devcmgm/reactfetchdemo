@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Async from 'react-async';
 
 class App extends Component {
   state = {
@@ -12,14 +13,14 @@ class App extends Component {
       ;
   }
 
-  getText() {
+  async getText() {
     const url = 'https://data.montgomeryal.gov/resource/7wcg-q8pp.json';
     console.log(url);
 
     fetch(url, {
     }).then( response => response.json())
     .then(responseText => {
-      console.log(responseText)
+      //console.log(responseText)
       this.setState({ externalData: responseText } )
       })
     .catch((error) => {
@@ -40,12 +41,15 @@ class App extends Component {
     } else {
 
       const items = this.state.externalData.map(function(item, index){
-        return <li> {item.request_type},{item.create_date}! </li>;
+        return <li> {item.request_type} </li>;
       });
+     
+     console.log("FOO" + items);
+
 
      return (
       <View style={styles.container}>
-        <Text>Works Loaded </Text>
+        <Text>know Works Loaded {items} </Text>
       </View>
        );
      }
