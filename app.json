@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "z1",
-    "slug": "z1",
+    "name": "DemoJsonApp",
+    "slug": "Demo App",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
